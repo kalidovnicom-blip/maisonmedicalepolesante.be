@@ -56,22 +56,9 @@
   --ombre:   0 1px 3px rgb(0 0 0 / 0.1);
   --largeur-lecture: 65ch;
   --largeur-page: 1200px;
-}
 
-/* --- Mode sombre ---------------------------------------------------
-   Redéclarez UNIQUEMENT les couleurs, jamais les composants.        */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fond:             #121417;
-    --surface:          #1B1E24;
-    --texte:            #EDEDED;
-    --texte-secondaire: #A0A0A8;
-    --bordure:          #2E323A;
-    --accent:           #4C63A8;           /* éclairci pour rester lisible sur fond sombre */
-    --accent-clair:     #7B90D6;
-    --accent-texte:     #FFFFFF;
-  }
+  /* Fond toujours clair : on ignore volontairement le mode sombre du système. */
+  color-scheme: light;
 }
 
 /* =========================================================
