@@ -1,0 +1,206 @@
+/* =========================================================
+   DESIGN SYSTEM — MEDICA / Maison médicale Pôle Santé
+
+   Couleurs extraites par échantillonnage direct du logo
+   (« logo pole santé-Q.jpg ») et des captures de `pole sante siteweb/`,
+   pas redevinées à l'œil. Contrastes calculés (WCAG) en commentaire
+   à côté de chaque paire texte/fond.
+
+   Règle unique mais absolue : dans le reste du site, aucune couleur,
+   aucune taille et aucun espacement en dur. Tout passe par une variable
+   déclarée ci-dessous. C'est ce qui garantit qu'une modification faite
+   ici se propage à toutes les pages d'un coup.
+   ========================================================= */
+
+:root {
+  /* --- Couleurs -------------------------------------------------- */
+  --fond:             #FFFFFF;
+  --surface:          #F5F6FA;
+  --texte:            #1A1A1A;             /* sur --fond      : 17.4:1 */
+  --texte-secondaire: #5A5A5A;             /* sur --fond      : 6.9:1  */
+  --bordure:          #E0E2E8;
+  --accent:           #1B2E69;             /* bleu marine — hero, header, texte sur blanc : 12.8:1 */
+  --accent-clair:     #354FAE;             /* bleu du logo — liens secondaires, sur blanc : 7.3:1 */
+  --alerte-forte:     #E02A26;             /* rouge du logo — CTA, sur blanc en texte : 4.6:1 (OK dès 16px) */
+  --accent-texte:     #FFFFFF;             /* texte posé sur --accent ou --alerte-forte */
+
+  --succes:           #157347;
+  --alerte:           #9A6700;
+  --erreur:           #B42318;
+
+  /* --- Typographie ------------------------------------------------ */
+  --police-titre: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --police-texte: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --taille-xs:  0.8125rem;
+  --taille-s:   0.9375rem;
+  --taille-m:   1rem;
+  --taille-l:   1.25rem;
+  --taille-xl:  1.75rem;
+  --taille-xxl: 2.5rem;
+
+  --interligne-serre: 1.2;
+  --interligne-texte: 1.6;
+
+  /* --- Espacements ------------------------------------------------ */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 1rem;
+  --esp-4: 1.5rem;
+  --esp-5: 2.5rem;
+  --esp-6: 4rem;
+
+  /* --- Divers ----------------------------------------------------- */
+  --rayon:   8px;
+  --rayon-pilule: 999px;
+  --ombre:   0 1px 3px rgb(0 0 0 / 0.1);
+  --largeur-lecture: 65ch;
+  --largeur-page: 1200px;
+}
+
+/* --- Mode sombre ---------------------------------------------------
+   Redéclarez UNIQUEMENT les couleurs, jamais les composants.        */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond:             #121417;
+    --surface:          #1B1E24;
+    --texte:            #EDEDED;
+    --texte-secondaire: #A0A0A8;
+    --bordure:          #2E323A;
+    --accent:           #4C63A8;           /* éclairci pour rester lisible sur fond sombre */
+    --accent-clair:     #7B90D6;
+    --accent-texte:     #FFFFFF;
+  }
+}
+
+/* =========================================================
+   STYLES DE BASE
+   ========================================================= */
+
+* { box-sizing: border-box; }
+
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  max-width: 100%;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police-texte);
+  font-size: var(--taille-m);
+  line-height: var(--interligne-texte);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--police-titre);
+  line-height: var(--interligne-serre);
+  color: var(--accent);
+  margin: 0 0 var(--esp-3);
+}
+
+h1 { font-size: var(--taille-xxl); }
+h2 { font-size: var(--taille-xl); }
+h3 { font-size: var(--taille-l); }
+
+p { margin: 0 0 var(--esp-3); max-width: var(--largeur-lecture); }
+
+a {
+  color: var(--accent-clair);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent-clair); outline-offset: 2px; }
+
+/* --- Boutons ------------------------------------------------------ */
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-2) var(--esp-4);
+  border-radius: var(--rayon-pilule);
+  border: 2px solid transparent;
+  font-size: var(--taille-m);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.bouton-primaire {
+  background: var(--alerte-forte);
+  color: var(--accent-texte);
+}
+.bouton-primaire:hover  { background: #C0231F; }
+.bouton-primaire:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.bouton-primaire:disabled {
+  background: var(--bordure);
+  color: var(--texte-secondaire);
+  cursor: not-allowed;
+}
+
+.bouton-secondaire {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.bouton-secondaire:hover { background: var(--surface); }
+.bouton-secondaire:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.bouton-secondaire:disabled {
+  border-color: var(--bordure);
+  color: var(--texte-secondaire);
+  cursor: not-allowed;
+}
+
+/* --- Champs de formulaire ------------------------------------------ */
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--esp-1);
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: var(--esp-2) var(--esp-3);
+  font-size: var(--taille-m);
+  font-family: inherit;
+  color: var(--texte);
+  background: var(--fond);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+}
+
+input:hover, textarea:hover, select:hover { border-color: var(--accent-clair); }
+
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent-clair);
+  outline-offset: 1px;
+  border-color: var(--accent-clair);
+}
+
+input:disabled, textarea:disabled, select:disabled {
+  background: var(--surface);
+  color: var(--texte-secondaire);
+  cursor: not-allowed;
+}
+
+/* --- Badges (utilisés partout dans le brouillon existant) --------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-1);
+  padding: var(--esp-1) var(--esp-3);
+  border-radius: var(--rayon-pilule);
+  font-size: var(--taille-s);
+  font-weight: 700;
+}
+.badge-succes  { background: #DFF3E6; color: var(--succes); }
+.badge-alerte  { background: #FDECEC; color: var(--erreur); }
+.badge-info    { background: #E7EAF7; color: var(--accent); }
