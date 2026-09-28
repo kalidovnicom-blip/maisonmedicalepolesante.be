@@ -171,6 +171,14 @@
   gap: var(--esp-3);
   margin-top: var(--esp-4);
 }
+.bouton-secondaire--clair {
+  border-color: var(--accent-texte);
+  color: var(--accent-texte);
+}
+.bouton-secondaire--clair:hover {
+  background: var(--fond);
+  color: var(--accent);
+}
 
 .hero__image {
   width: 100%;
@@ -208,8 +216,8 @@
   background: var(--alerte-forte);
   color: var(--accent-texte);
   font-weight: 700;
-  font-size: var(--taille-s);
-  padding: var(--esp-2) var(--esp-4);
+  font-size: var(--taille-l);
+  padding: var(--esp-3) var(--esp-5);
   border-radius: var(--rayon-pilule);
   box-shadow: var(--ombre);
   white-space: nowrap;
@@ -223,8 +231,8 @@
     margin: 0 auto;
   }
   .hero__etiquette {
-    font-size: var(--taille-xs);
-    padding: var(--esp-1) var(--esp-3);
+    font-size: var(--taille-m);
+    padding: var(--esp-2) var(--esp-4);
   }
 }
 
@@ -238,13 +246,49 @@
   margin-bottom: var(--esp-5);
 }
 
+@media (min-width: 900px) {
+  #apercu-centres .section__entete { max-width: none; }
+  #apercu-centres .section__entete p { white-space: nowrap; }
+}
+
+#videos .section__entete {
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  #videos .conteneur {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--esp-5);
+  }
+  #videos .section__entete {
+    flex: 0 1 320px;
+    max-width: none;
+    margin-inline: 0;
+    margin-bottom: 0;
+    text-align: left;
+  }
+  #videos .grille-videos {
+    flex: 0 1 640px;
+    max-width: none;
+    margin-inline: 0;
+  }
+}
+
 .grille-centres {
   display: grid;
   gap: var(--esp-4);
   grid-template-columns: minmax(0, 1fr);
+  max-width: 500px;
+  margin-inline: auto;
 }
 @media (min-width: 700px) {
-  .grille-centres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grille-centres:has(.carte-centre__deux-colonnes) {
+    max-width: none;
+  }
 }
 
 .carte-centre {
@@ -271,6 +315,17 @@
   flex-wrap: wrap;
   gap: var(--esp-2);
   margin-top: var(--esp-3);
+}
+
+@media (min-width: 900px) {
+  .carte-centre__deux-colonnes {
+    display: flex;
+    gap: var(--esp-5);
+    align-items: flex-start;
+  }
+  .carte-centre__col { flex: 1 1 0; min-width: 0; }
+  .carte-centre__col--gauche { order: 1; }
+  .carte-centre__col--droite { order: 2; }
 }
 
 /* --- Services ------------------------------------------------------ */
@@ -427,9 +482,8 @@
 .grille-videos {
   display: grid;
   gap: var(--esp-5);
-}
-@media (min-width: 700px) {
-  .grille-videos { grid-template-columns: 1fr 1fr; }
+  max-width: 640px;
+  margin-inline: auto;
 }
 
 .carte-video h3 { margin-bottom: var(--esp-2); }
