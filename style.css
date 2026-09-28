@@ -446,10 +446,12 @@
   justify-content: center;
   overflow: hidden;
 }
-.video-cadre video {
+.video-cadre video,
+.video-cadre iframe {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border: 0;
   border-radius: calc(var(--rayon) - 2px);
 }
 
